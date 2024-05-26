@@ -1,34 +1,50 @@
 import React, { useEffect, useState } from "react"
 
 function ProductCard({ product }) {
+  const [quantity, setQuantity] = useState(1)
+
   return (
-    // <div className="shadow-md bg-white rounded-md overflow-hidden max-w-[300px] p-4">
-    //   <img src={product.image} alt={product.title} className="w-40 mx-auto" />
-    //   <div className="p-4">
-    //     <h2 className="text-lg font-semibold text-gray-800">{product.title}</h2>
-    //     <p className="text-sm text-gray-600">{product.description}</p>
-    //     <p className="text-lg font-semibold text-blue-500">${product.price}</p>
-    //   </div>
-    // </div>
     <>
-      <div className="rounded-lg overflow-hidden shadow-lg bg-white max-w-[300px] p-2">
+      <div className="rounded-lg overflow-hidden shadow-lg space-y-4 flex flex-col bg-white max-w-[350px]  p-6">
         <img
           src={product.image}
           alt={product.title}
-          className="w-40 mx-auto object-cover"
+          className="2xl:w-52 2xl:h-52  mx-auto object-contain"
         />
-        <div className="p-4">
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">
-            {product.title}
-          </h2>
-          <p className="text-sm text-gray-600 mb-4">{product.description}</p>
-          <div className="flex justify-between items-center">
-            <p className="2xl:text-xl font-semibold text-[#1a385e]">
-              ${product.price}
+        <div className="flex flex-1  flex-col justify-between">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              {product.title}
+            </h2>
+            <p className="text-sm text-gray-600 mb-4 text-justify">
+              {product.description}
             </p>
-            <button className="px-4 py-2 bg-secondary text-white rounded-md hover:bg-secondary/90 transition duration-300">
-              Add to Cart
-            </button>
+          </div>
+          <div className="flex flex-col justify-between gap-2 ">
+            <div className="flex p-1 justify-between items-center">
+              <p className="2xl:text-xl font-semibold text-[#1a385e]">
+                {" "}
+                ${product.price}
+              </p>
+              <div>
+                <label htmlFor="quantity">Qty:</label>
+                <input
+                  type="number"
+                  min="1"
+                  max="5"
+                  value={quantity}
+                  defaultValue={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  className="border  px-1 max-w-20"
+                />
+              </div>
+            </div>
+            <div>
+              <button className="w-full px-4 py-2 bg-secondary text-white rounded-md hover:bg-secondary/90 transition duration-300">
+                {" "}
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>

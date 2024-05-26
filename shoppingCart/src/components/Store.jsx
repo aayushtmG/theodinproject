@@ -9,11 +9,9 @@ function Store() {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((json) => {
-        console.log(json)
         setProductList(json)
       })
   }, [])
-  const product = {}
   return (
     <div
       className="h-screen 
@@ -28,8 +26,12 @@ function Store() {
           Store
         </h1>
       </div>
-      <div className="border m-2 ">
-        <ProductCard product={product}></ProductCard>
+      <div className="my-10 p-6 grid 2xl:grid-cols-5 gap-8  ">
+        {productList.length > 0
+          ? productList.map((product) => (
+              <ProductCard product={product} key={product.id}></ProductCard>
+            ))
+          : null}
       </div>
     </div>
   )
