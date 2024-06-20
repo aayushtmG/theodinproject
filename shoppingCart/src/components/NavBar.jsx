@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { IoMdCart } from "react-icons/io"
 import CartItem from "./CartItem"
 import TotalPrice from "./TotalPrice"
+import Button from "./ui/Button"
 import {
   Sheet,
   SheetContent,
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/sheet"
 
 export default function NavBar({ itemsInCart }) {
+  const [total, setTotal] = useState(0)
   return (
     <header className="flex justify-between container mx-auto p-2">
       <h1 className="2xl:text-2xl font-semibold font-poetsen tracking-wide hover:animate-pulse cursor-pointer">
@@ -38,17 +40,15 @@ export default function NavBar({ itemsInCart }) {
         </ul>
 
         <Sheet>
-          <SheetTrigger>
-            <button
-              type="button"
-              class="relative inline-flex items-center p-3 text-sm font-medium text-center rounded-lg focus:outline-none "
+          <SheetTrigger className="relative inline-flex items-center p-3 text-sm font-medium text-center rounded-lg focus:outline-none ">
+            <IoMdCart className="text-2xl  ml-3 hover:text-secondary cursor-pointer transition-colors ease-out duration-300"></IoMdCart>
+            <span className="sr-only">Notifications</span>
+            <span
+              className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-secondary border-2 border-white rounded-lg -top-1 -end-2 "
+              id="waht"
             >
-              <IoMdCart className="text-2xl ml-8 hover:text-secondary cursor-pointer transition-colors ease-out duration-300"></IoMdCart>
-              <span class="sr-only">Notifications</span>
-              <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-secondary border-2 border-white rounded-lg -top-1 -end-2 ">
-                {itemsInCart.length}
-              </div>
-            </button>
+              {itemsInCart.length}
+            </span>
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
@@ -60,7 +60,8 @@ export default function NavBar({ itemsInCart }) {
                   ))}
               </SheetDescription>
             </SheetHeader>
-            <TotalPrice total="900"></TotalPrice>
+            <TotalPrice total={total}></TotalPrice>
+            <Button title="Buy" onClick={() => {}} />
           </SheetContent>
         </Sheet>
       </nav>

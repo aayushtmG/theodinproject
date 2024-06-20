@@ -10,7 +10,6 @@ function CartItem({ product }) {
   //       setProduct(json[0])
   //     })
   // }, [])
-  console.log("got", product)
   return (
     <>
       {product && (

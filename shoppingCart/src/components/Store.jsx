@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
 
-function Store() {
+function Store({ setItemsInCart }) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [productList, setProductList] = useState([])
   useEffect(() => {
@@ -12,6 +12,10 @@ function Store() {
         setProductList(json)
       })
   }, [])
+
+  const onAddCart = (item) => {
+    setItemsInCart((items) => [...items, item])
+  }
   return (
     <div
       className="h-screen 
@@ -29,7 +33,11 @@ function Store() {
       <div className="my-10 p-6 grid 2xl:grid-cols-5 gap-8  ">
         {productList.length > 0
           ? productList.map((product) => (
-              <ProductCard product={product} key={product.id}></ProductCard>
+              <ProductCard
+                product={product}
+                key={product.id}
+                onAddCart={onAddCart}
+              ></ProductCard>
             ))
           : null}
       </div>

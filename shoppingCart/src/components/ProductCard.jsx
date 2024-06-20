@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
+import Button from "./ui/Button"
 
-function ProductCard({ product }) {
+function ProductCard({ product, onAddCart }) {
   const [quantity, setQuantity] = useState(1)
-
   return (
     <>
       <div className="rounded-lg overflow-hidden shadow-lg space-y-4 flex flex-col bg-white max-w-[350px]  p-6">
@@ -33,17 +33,17 @@ function ProductCard({ product }) {
                   min="1"
                   max="5"
                   value={quantity}
-                  defaultValue={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                   className="border  px-1 max-w-20"
                 />
               </div>
             </div>
             <div>
-              <button className="w-full px-4 py-2 bg-secondary text-white rounded-md hover:bg-secondary/90 transition duration-300">
-                {" "}
-                Add to Cart
-              </button>
+              <Button
+                className="w-full px-4 py-2 bg-secondary text-white rounded-md hover:bg-secondary/90 transition duration-300"
+                onClick={onAddCart}
+                title={"Add To Cart"}
+              />
             </div>
           </div>
         </div>
