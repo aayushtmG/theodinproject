@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import ReactDOM from "react-dom/client"
 import Home from "./components/Home.jsx"
 import Store from "./components/Store.jsx"

@@ -67,7 +67,7 @@ SheetContent.displayName = SheetPrimitive.Content.displayName
 const SheetHeader = ({ className, ...props }) => (
   <div
     className={cn(
-      "flex flex-col space-y-2 text-center sm:text-left",
+      "flex flex-col space-y-2 text-center sm:text-left ",
       className
     )}
     {...props}
@@ -90,7 +90,7 @@ const SheetTitle = React.forwardRef(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
     className={cn(
-      "text-lg font-semibold text-gray-950 dark:text-gray-50",
+      "text-lg font-semibold text-gray-950 dark:text-gray-50 fixed",
       className
     )}
     {...props}

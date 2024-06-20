@@ -41,7 +41,7 @@ function ProductCard({ product, onAddCart }) {
             <div>
               <Button
                 className="w-full px-4 py-2 bg-secondary text-white rounded-md hover:bg-secondary/90 transition duration-300"
-                onClick={onAddCart}
+                onClick={() => onAddCart({ ...product, quantity })}
                 title={"Add To Cart"}
               />
             </div>

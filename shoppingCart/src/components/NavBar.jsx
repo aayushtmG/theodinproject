@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { IoMdCart } from "react-icons/io"
-import CartItem from "./CartItem"
-import TotalPrice from "./TotalPrice"
-import Button from "./ui/Button"
+import CartList from "./CartList"
 import {
   Sheet,
   SheetContent,
@@ -15,6 +13,14 @@ import {
 
 export default function NavBar({ itemsInCart }) {
   const [total, setTotal] = useState(0)
+
+  useEffect(() => {
+    let newTotal = 0
+    itemsInCart.forEach(
+      (item) => Math.round((newTotal += item.price * item.quantity) * 100) / 100
+    )
+    setTotal(newTotal)
+  }, [itemsInCart])
   return (
     <header className="flex justify-between container mx-auto p-2">
       <h1 className="2xl:text-2xl font-semibold font-poetsen tracking-wide hover:animate-pulse cursor-pointer">
@@ -53,15 +59,8 @@ export default function NavBar({ itemsInCart }) {
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Items in cart:</SheetTitle>
-              <SheetDescription>
-                {itemsInCart.length > 0 &&
-                  itemsInCart.map((item) => (
-                    <CartItem product={item}></CartItem>
-                  ))}
-              </SheetDescription>
             </SheetHeader>
-            <TotalPrice total={total}></TotalPrice>
-            <Button title="Buy" onClick={() => {}} />
+            <CartList itemList={itemsInCart} total={total} />
           </SheetContent>
         </Sheet>
       </nav>

@@ -12,11 +12,12 @@ function App() {
     //     setItemsInCart(json)
     //   })
   }, [])
+
   return (
     <>
       <NavBar itemsInCart={itemsInCart}></NavBar>
       <main>
-        <Outlet></Outlet>
+        <Outlet context={[itemsInCart, setItemsInCart]}></Outlet>
       </main>
     </>
   )

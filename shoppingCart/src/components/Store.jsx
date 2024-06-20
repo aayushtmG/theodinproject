@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react"
 import ProductCard from "./ProductCard"
+import { useOutletContext } from "react-router-dom"
 
-function Store({ setItemsInCart }) {
+function Store() {
+  const [itemsInCart, setItemsInCart] = useOutletContext()
   const [isLoaded, setIsLoaded] = useState(false)
   const [productList, setProductList] = useState([])
   useEffect(() => {
@@ -13,9 +15,23 @@ function Store({ setItemsInCart }) {
       })
   }, [])
 
-  const onAddCart = (item) => {
-    setItemsInCart((items) => [...items, item])
+  const onAddCart = (product) => {
+    const existingProduct = itemsInCart.find((item) => item.id == product.id)
+    if (!existingProduct) {
+      console.log("first time")
+      return setItemsInCart((items) => [...items, product])
+    }
+    existingProduct.quantity += Number(product.quantity)
+
+    setItemsInCart(
+      itemsInCart.map((item) =>
+        item.id == existingProduct.id ? { ...existingProduct } : item
+      )
+    )
   }
+  useEffect(() => {
+    console.log(itemsInCart)
+  }, [itemsInCart])
   return (
     <div
       className="h-screen 
