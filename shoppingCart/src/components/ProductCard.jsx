@@ -9,14 +9,14 @@ function ProductCard({ product, onAddCart }) {
         <img
           src={product.image}
           alt={product.title}
-          className="2xl:w-52 2xl:h-52  mx-auto object-contain"
+          className=" w-24 2xl:w-52 2xl:h-52  mx-auto object-contain"
         />
         <div className="flex flex-1  flex-col justify-between">
           <div>
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+            <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">
               {product.title}
             </h2>
-            <p className="text-sm text-gray-600 mb-4 text-justify">
+            <p className="text-xs md:text-sm text-gray-600 mb-4 text-justify">
               {product.description}
             </p>
           </div>

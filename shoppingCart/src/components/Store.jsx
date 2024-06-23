@@ -29,9 +29,7 @@ function Store() {
       )
     )
   }
-  useEffect(() => {
-    console.log(itemsInCart)
-  }, [itemsInCart])
+
   return (
     <div
       className="h-screen 
@@ -46,7 +44,7 @@ function Store() {
           Store
         </h1>
       </div>
-      <div className="my-10 p-6 grid 2xl:grid-cols-5 gap-8  ">
+      <div className="md:my-10 p-6 grid max-sm:place-items-center  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8  ">
         {productList.length > 0
           ? productList.map((product) => (
               <ProductCard

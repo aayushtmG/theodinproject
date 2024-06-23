@@ -4,19 +4,21 @@ import { useState, useEffect } from "react"
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState([])
-  useEffect(() => {
-    // fetch("https://fakestoreapi.com/products?limit=5")
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     console.log(json)
-    //     setItemsInCart(json)
-    //   })
-  }, [])
 
+  const removeItemHandler = (itemId) => {
+    setItemsInCart(itemsInCart.filter((item) => item.id !== itemId))
+  }
+  const resetStore = () => {
+    setItemsInCart([])
+  }
   return (
     <>
-      <NavBar itemsInCart={itemsInCart}></NavBar>
-      <main>
+      <NavBar
+        itemsInCart={itemsInCart}
+        removeItemHandler={removeItemHandler}
+        resetStore={resetStore}
+      ></NavBar>
+      <main className="mt-12">
         <Outlet context={[itemsInCart, setItemsInCart]}></Outlet>
       </main>
     </>

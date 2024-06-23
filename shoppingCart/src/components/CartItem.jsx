@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-function CartItem({ product, quantity }) {
+function CartItem({ product, quantity, removeItemHandler, bought }) {
   // const [product, setProduct] = useState({})
   // useEffect(() => {
   //   fetch("https://fakestoreapi.com/products")
@@ -20,18 +20,23 @@ function CartItem({ product, quantity }) {
               alt={product.title}
               className="w-20 2xl:w-20  object-contain"
             />
-            <div>
+            <div className="break-all">
               <h2 className="text-md font-semibold text-gray-800 mb-2">
                 {product.title}
               </h2>
               <p>x {quantity || 1}</p>
-              <div className="flex justify-between">
+              <div className="flex flex-col items-start  md:flex-row md:items-center justify-between">
                 <p className="2xl:text-xl font-semibold text-[#1a385e]">
                   ${product.price}
                 </p>
-                <button className="text-sm 2xl:text-md hover:text-red-500">
-                  Remove
-                </button>
+                {bought ? null : (
+                  <button
+                    className="text-sm 2xl:text-md hover:text-red-500"
+                    onClick={() => removeItemHandler(product.id)}
+                  >
+                    Remove
+                  </button>
+                )}
               </div>
             </div>
           </div>
