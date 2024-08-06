@@ -1,6 +1,13 @@
 import NavBar from "./components/NavBar"
 import { Outlet } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState, useEffect, createContext } from "react"
+
+export const ShopContext = createContext({
+  itemsInCart: [],
+  resetStore: () => {},
+  removeItemHandler: () => {},
+  setItemsInCart: () => {},
+})
 
 function App() {
   const [itemsInCart, setItemsInCart] = useState([])
@@ -12,16 +19,14 @@ function App() {
     setItemsInCart([])
   }
   return (
-    <>
-      <NavBar
-        itemsInCart={itemsInCart}
-        removeItemHandler={removeItemHandler}
-        resetStore={resetStore}
-      ></NavBar>
+    <ShopContext.Provider
+      value={{ itemsInCart, resetStore, removeItemHandler, setItemsInCart }}
+    >
+      <NavBar></NavBar>
       <main className="mt-12">
-        <Outlet context={[itemsInCart, setItemsInCart]}></Outlet>
+        <Outlet></Outlet>
       </main>
-    </>
+    </ShopContext.Provider>
   )
 }
 

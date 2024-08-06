@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react"
-import ProductCard from "./ProductCard"
-import { useOutletContext } from "react-router-dom"
+import React, { useContext, useEffect, useState } from "react"
+import ProductCard from "./components/ProductCard"
+import { ShopContext } from "./App"
 
 function Store() {
-  const [itemsInCart, setItemsInCart] = useOutletContext()
+  const { itemsInCart, setItemsInCart } = useContext(ShopContext)
   const [isLoaded, setIsLoaded] = useState(false)
   const [productList, setProductList] = useState([])
   useEffect(() => {
-    setIsLoaded(true)
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((json) => {
         setProductList(json)
+        setIsLoaded(true)
       })
   }, [])
 
@@ -31,10 +31,7 @@ function Store() {
   }
 
   return (
-    <div
-      className="h-screen 
-    "
-    >
+    <div className="h-screen">
       <div className="text-center">
         <h1
           className={`${
@@ -44,17 +41,21 @@ function Store() {
           Store
         </h1>
       </div>
-      <div className="md:my-10 p-6 grid max-sm:place-items-center  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8  ">
-        {productList.length > 0
-          ? productList.map((product) => (
-              <ProductCard
-                product={product}
-                key={product.id}
-                onAddCart={onAddCart}
-              ></ProductCard>
-            ))
-          : null}
-      </div>
+      {isLoaded ? (
+        <div className="md:my-10 p-6 grid max-sm:place-items-center  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8  ">
+          {productList.length > 0
+            ? productList.map((product) => (
+                <ProductCard
+                  product={product}
+                  key={product.id}
+                  onAddCart={onAddCart}
+                ></ProductCard>
+              ))
+            : null}
+        </div>
+      ) : (
+        <h1 className="text-center mt-20 text-4xl">Loading....</h1>
+      )}
     </div>
   )
 }

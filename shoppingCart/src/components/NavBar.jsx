@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { IoMdCart } from "react-icons/io"
 import CartList from "./CartList"
+import { ShopContext } from "../App"
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
 
-export default function NavBar({ itemsInCart, removeItemHandler, resetStore }) {
+export default function NavBar() {
   const [total, setTotal] = useState(0)
+  const { itemsInCart, removeItemHandler, resetStore } = useContext(ShopContext)
 
   useEffect(() => {
     let newTotal = 0
