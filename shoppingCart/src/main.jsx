@@ -25,10 +25,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/store",
-    element: <Store></Store>,
-  },
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
