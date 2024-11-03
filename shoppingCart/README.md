@@ -9,3 +9,5 @@ Currently, two official plugins are available:
 
 links to color
 https://colorhunt.co/palette/eef5ffb4d4ff86b6f6176b87
+
+Live link : https://fakestore-aayush.netlify.app/

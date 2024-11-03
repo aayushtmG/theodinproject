@@ -20,12 +20,12 @@ function CartItem({ product, quantity, removeItemHandler, bought }) {
               alt={product.title}
               className="w-20 2xl:w-20  object-contain"
             />
-            <div className="break-all">
+            <div className="break-all w-full">
               <h2 className="text-md font-semibold text-gray-800 mb-2">
                 {product.title}
               </h2>
               <p>x {quantity || 1}</p>
-              <div className="flex flex-col items-start  md:flex-row md:items-center justify-between">
+              <div className="flex flex-col items-start  md:flex-row md:items-center justify-between ">
                 <p className="2xl:text-xl font-semibold text-[#1a385e]">
                   ${product.price}
                 </p>
